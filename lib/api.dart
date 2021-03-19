@@ -8,7 +8,7 @@ import 'package:final_task/model/crudkategori.dart';
 import 'package:final_task/model/getproduk.dart';
 
 class Api {
-  static String url = 'http://192.168.1.5/final';
+  static String url = 'http://final.utexample.xyz';
 
   Future<List<Sliders>> getSlider() async {
     List<Sliders> listSlider = [];
