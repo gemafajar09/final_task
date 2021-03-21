@@ -59,8 +59,6 @@ class _KeranjangState extends State<Keranjang> {
     final res = await http.post(Api.url + '/crud/addkeranjang.php',
         body: {'id_keranjang': id, 'action': 'sum'});
     if (res.statusCode == 200) {
-      final data = jsonDecode(res.body);
-      showToast(data['pesan']);
       setState(() {});
     }
   }
@@ -69,8 +67,6 @@ class _KeranjangState extends State<Keranjang> {
     final res = await http.post(Api.url + '/crud/addkeranjang.php',
         body: {'id_keranjang': id, 'action': 'min'});
     if (res.statusCode == 200) {
-      final data = jsonDecode(res.body);
-      showToast(data['pesan']);
       setState(() {});
     }
   }
@@ -92,6 +88,15 @@ class _KeranjangState extends State<Keranjang> {
         timeInSecForIosWeb: 5,
         backgroundColor: Color(0xffa7bb9f),
         textColor: Colors.white);
+  }
+
+  void checkout() async {
+    final res =
+        await http.post(Api.url + "/crud/checkout.php", body: {'id': iduser});
+    if (res.statusCode == 200) {
+      print(res.body);
+      setState(() {});
+    }
   }
 
   Widget content() {
@@ -268,7 +273,9 @@ class _KeranjangState extends State<Keranjang> {
                 height: 50,
                 width: MediaQuery.of(context).size.width / 1,
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    checkout();
+                  },
                   child: Center(
                     child: Text('Checkout'),
                   ),
